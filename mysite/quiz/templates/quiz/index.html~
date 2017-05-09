@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Index</title>
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'quiz/style.css' %}" />
+
+</head>
+<body>
+
+<div id="top">
+    <header>
+        <hgroup>
+            <h1>Suppakan</h1>
+        </hgroup>
+        <nav>
+            <ul1>
+                <li class="tabs"><a href="{% url 'home:home' %}">Home</a></li>
+                <li class="tabs"><a href="{% url 'quiz:index' %}">Quiz</a></li>
+                <li class="tabs"><a href="{% url 'polls:index' %}">Polls</a></li>
+            </ul1>
+       </nav>
+    </header>
+</div>
+
+<br>
+<div id="main" align="center">
+<img src="{% static "quiz/overwatch.png" %}" width="769" height="300" alt="logo"/>
+<br>
+<h1>OVERWATCH QUIZ</h1>
+<br>
+
+<h2>recently player<h2>
+<ul>
+<table>
+{% if latest_player_list %}
+    <tr>
+	<th>Player</th>
+	<th>Score</th>
+    </tr>
+    {% for player in latest_player_list %}
+    <tr>
+        <td>{{ player.player_text }}</td></li>
+	<td>{{ player.score }}</td>
+    </tr>
+    {% endfor %}    
+{% else %}
+    <p><h5>No player play this quiz.<h5></p>
+{% endif %}
+</table>
+</ul>
+<br>
+<a href="{% url 'quiz:detail' %}">
+<img src="{% static "quiz/play.png" %}" width="200" height="100" alt="play"/>
+</a>
+<br>
+<a href="{% url 'quiz:results' %}">
+<img src="{% static "quiz/key.png" %}" width="100" height="100" alt="key"/>
+</a>
+<br><br><br>
+</div>
+</body>
+</html>
+
+
+

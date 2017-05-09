@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Index</title>
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}" />s
+
+</head>
+<body>
+
+<div id="top">
+    <header>
+        <hgroup>
+            <h1>Suppakan</h1>
+        </hgroup>
+        <nav>
+            <ul1>
+                <li class="tabs"><a href="{% url 'home:index' %}">Home</a></li>
+                <li class="tabs"><a href="{% url 'quiz:index' %}">Quiz</a></li>
+                <li class="tabs"><a href="{% url 'polls:index' %}">Polls</a></li>
+            </ul1>
+       </nav>
+    </header>
+</div>
+
+<br>
+<div id="main" align="center">
+<br>
+<h1>Question List</h1>
+
+{% if latest_question_list %}
+    <ul>
+    <table>
+    <tr>
+	<th>Question</th>
+    </tr>
+    {% for question in latest_question_list %}
+    <tr>
+        <td><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</td></li>
+    </tr>
+    {% endfor %}
+    </table>
+    </ul>
+    
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+
+<form action="{% url 'polls:add_question' %}" method="post">
+    <h4>Add Question</h4>
+    {% csrf_token %}
+    <input type="text" name="addQuestion" maxlength="99" size="30"/><br>
+    <input type="submit" value="Add"/>
+    <br><br>
+</form>
+
+<br><br><br>
+</div>
+</body>
+</html>
+
+
+

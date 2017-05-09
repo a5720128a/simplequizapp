@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Result</title>
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'quiz/style.css' %}" />
+
+</head>
+<body>
+<br>
+<div id="main" align="center">
+<img align="center" src="{% static "quiz/overwatch.png" %}" width="769" height="300" alt="logo"/>
+<br>
+<h1>KEY<h1>
+<h4>
+<ul>
+<table>
+    <tr>
+	<th>Question</th>
+	<th>Answer</th>
+    </tr>
+{% for question in latest_question_list %}
+    <tr>
+        <td>{{ question.question_text }}</td>
+	{% csrf_token %}
+	{% for choice in question.choice_set.all %}
+	    {% if choice.votes == 1 %}
+		<td>{{ choice.choice_text }}</td>
+	    {% endif %}
+	{% endfor %}
+    </tr>
+
+{% endfor %}
+    </table>
+    </ul>
+<br><br>
+<a href="{% url 'quiz:index' %}">
+<img src="{% static "quiz/home.png" %}" width="100" height="100" alt="home"/>
+</a>
+<br><br><br>
+</div>
+</body>
+</html>
+

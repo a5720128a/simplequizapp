@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Detail</title>
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'quiz/style.css' %}" />
+
+</head>
+<body>
+
+<div id="top">
+    <header>
+        <hgroup>
+            <h1>Suppakan</h1>
+        </hgroup>
+        <nav>
+            <ul1>
+                <li class="tabs"><a href="{% url 'home:index' %}">Home</a></li>
+                <li class="tabs"><a href="{% url 'quiz:index' %}">Quiz</a></li>
+                <li class="tabs"><a href="{% url 'polls:index' %}">Polls</a></li>
+            </ul1>
+       </nav>
+    </header>
+</div>
+
+<br>
+<div id="main">
+<br>
+<p align="center">
+<img src="{% static "quiz/overwatch.png" %}" width="769" height="300" alt="logo"/>
+</p>
+<h1>OVERWATCH QUIZ</h1>
+<br>
+
+<div id="leftM">
+
+<form action="{% url 'quiz:add_player' %}" method="post">
+
+{% for question in latest_question_list %}
+
+    <h2>{{ question.question_text }}<h2>
+	{% csrf_token %}
+	{% for choice in question.choice_set.all %}
+<ul>
+	    <input type="radio" id="f-option" name="{{question.id}}" id="choice{{ forloop.counter }}" value="{{ choice.votes }}" />
+            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+</ul>
+	{% endfor %}
+    <br>
+{% endfor %}
+
+</div>
+
+<div align="center">
+    <br><br>
+    <h4>Nickname</h4>
+    <input type="text" name="addPlayer" maxlength="99" size="30"/><br>
+    <br><br><br>
+    <button class="button button1">Submit</button>
+</form>
+
+<br><br>
+<a href="{% url 'quiz:index' %}">
+<img src="{% static "quiz/home.png" %}" width="100" height="100" alt="home"/>
+</a>
+</div>
+<br><br><br>
+</div>
+</body>
+</html>
+

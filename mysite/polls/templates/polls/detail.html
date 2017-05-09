@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Detail</title>
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}" />
+
+</head>
+<body>
+
+<div id="top">
+    <header>
+        <hgroup>
+            <h1>Suppakan</h1>
+        </hgroup>
+        <nav>
+            <ul1>
+                <li class="tabs"><a href="{% url 'home:index' %}">Home</a></li>
+                <li class="tabs"><a href="{% url 'quiz:index' %}">Quiz</a></li>
+                <li class="tabs"><a href="{% url 'polls:index' %}">Polls</a></li>
+            </ul1>
+       </nav>
+    </header>
+</div>
+
+<br>
+<div id="main">
+<br>
+<h1>{{ question.question_text }}</h1>
+<div id="leftM">
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
+{% for choice in question.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+{% endfor %}
+</p>
+</div>
+
+<div align="center">
+<br>
+<input type="submit" value="Vote" />
+</form>
+<br>
+
+<form action="{% url 'polls:add_choice' question.id %}" method="post">
+    <h3>Add Choice</h3>
+    {% csrf_token %}
+    <input type="text" name="addChoice" maxlength="99" size="30"/><br>
+    <input type="submit" value="Add"/>
+</form>
+
+<br><br>
+<a href="{% url 'polls:index' %}">home</a>
+</div>
+
+<br><br><br>
+</div>
+</body>
+</html>
+

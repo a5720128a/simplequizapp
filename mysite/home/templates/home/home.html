@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Home</title>
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}" />
+
+</head>
+<body>
+
+<div id="top">
+    <header>
+        <hgroup>
+            <h1>Suppakan</h1>
+        </hgroup>
+        <nav>
+            <ul1>
+                <li class="tabs"><a href="{% url 'home:index' %}">Home</a></li>
+                <li class="tabs"><a href="{% url 'quiz:index' %}">Quiz</a></li>
+                <li class="tabs"><a href="{% url 'polls:index' %}">Polls</a></li>
+            </ul1>
+       </nav>
+    </header>
+</div>
+
+<br>
+<div id="main" align="center">
+<br>
+<h1>My Sites</h1>
+<br>
+<div id="leftM">
+Created by Suppakan Sattapongsa 5701012620128
+<br><br>
+</div>
+</div>
+
+</body>
+</html>
