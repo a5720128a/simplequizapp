@@ -35,7 +35,7 @@ class ResultsView(generic.ListView):
 
 def add_player(request):
     question_amount = Question.objects.count()+1
-    print(str(request.POST))
+    print(str(question_amount))
     point = 0
     for i in range(1,question_amount):
         try: 

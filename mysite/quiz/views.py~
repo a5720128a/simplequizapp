@@ -34,10 +34,10 @@ class ResultsView(generic.ListView):
         return Question.objects.all
 
 def add_player(request):
-    question_amount = Question.objects.count()+1
-    print(str(request.POST)+"sxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxxsxx")
+    question_amount = Question.objects.count()
+    print(str(question_amount))
     point = 0
-    for i in range(1,question_amount):
+    for i in range(0,question_amount):
         try: 
             check = int(request.POST[str(i)])
             if check == 1:

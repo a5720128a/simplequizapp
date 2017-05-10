@@ -17,7 +17,7 @@
         </hgroup>
         <nav>
             <ul1>
-                <li class="tabs"><a href="{% url 'home:home' %}">Home</a></li>
+                <li class="tabs"><a href="{% url 'home:index' %}">Home</a></li>
                 <li class="tabs"><a href="{% url 'quiz:index' %}">Quiz</a></li>
                 <li class="tabs"><a href="{% url 'polls:index' %}">Polls</a></li>
             </ul1>
@@ -45,7 +45,7 @@
 	{% for choice in question.choice_set.all %}
 <ul>
 	    <input type="radio" id="f-option" name="{{question.id}}" id="choice{{ forloop.counter }}" value="{{ choice.votes }}" />
-            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}{{ choice.votes }}</label><br />
 </ul>
 	{% endfor %}
     <br>
